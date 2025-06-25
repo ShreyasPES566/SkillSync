@@ -62,14 +62,14 @@ const Login = () => {
             <h2 className="pink">HELLO!</h2>
             <h2 className="welcome">WELCOME BACK</h2>
           </div>
-          <form className="login_form">
+          <form className="login_form" onSubmit={handleSubmit}>
             <div className="input_container">
               <label for="email">Email</label>
-            <input type="text" placeholder="email" name="email" id="email" />
+            <input type="text" placeholder="email" name="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
             </div>
             <div className="input_container">
               <label for="password">Password</label>
-              <input type="password" placeholder="password" name="password" id="password" />
+              <input type="password" placeholder="password" name="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
             </div>
             <div className="signup_container">
             <a href="forgot_password.html">Forgot Password</a>
