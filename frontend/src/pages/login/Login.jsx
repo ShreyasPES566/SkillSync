@@ -26,8 +26,10 @@ const Login = () => {
       const result = await response.json();
 
       if (response.ok) {
+        localStorage.setItem('userId',result.userId);
+        localStorage.setItem('username',result.username);
         alert(`Welcome back, ${result.username || 'user'}!`);
-        navigate('/dashboard'); 
+        navigate('/profile'); 
       } else {
         alert(result.message || "Invalid email or password.");
       }

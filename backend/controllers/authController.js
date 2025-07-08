@@ -41,7 +41,7 @@ const login = async (req,res) => {
         if(!isMatch){
             return res.status(401).json({message: 'Invalid credentials'});
         }
-        return res.status(200).json({message: 'Login successful', username:user.username});
+        return res.status(200).json({message: 'Login successful',userId: user.id, username:user.username});
     }catch(error){
         console.error('Login error: ',error);
         return res.status(500).json({message: 'Server error',error});
