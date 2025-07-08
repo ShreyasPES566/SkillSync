@@ -38,6 +38,11 @@ const Profile = () => {
       alert('User not logged in!');
       return;
     }
+    const phoneRegex = /^[6-9]\d{9}$/;
+    if(!phoneRegex.test(formD.phoneNumber)){
+      alert(`Please enter a valid mobile number.`);
+      return;
+    }
 
     try {
       const response = await fetch('http://localhost:3001/api/profile/create', {
