@@ -77,8 +77,8 @@ const Profile = () => {
       <div className="navbar">
         <div className="logo bruno-ace-regular">Skill Sync</div>
         <div className="subnav poppins-regular">
-          <div>ABOUT US</div>
-          <div>HELP</div>
+          <div style={{color: 'white'}}>ABOUT US</div>
+          <div style={{color: 'white'}}>HELP</div>
         </div>
       </div>
 
