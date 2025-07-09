@@ -62,8 +62,8 @@ const Login = () => {
             Skill Sync
           </div>
           <div className="subnav poppins-regular">
-            <div>About</div>
-            <div>Help</div>
+            <div style={{color: 'white'}}>About</div>
+            <div style={{color: 'white'}}>Help</div>
           </div>
         </div>
       </div>

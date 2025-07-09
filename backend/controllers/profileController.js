@@ -32,4 +32,17 @@ const createProfile = async (req,res) => {
         return res.status(500).json({message:"Server error",error});
     }
 };
-export {createProfile};
+const getProfileByUserId = async (req,res) => {
+    try{
+        const {userId} = req.params;
+        const profile = await Profiles.findOne({where: {userId}});
+        if(!profile){
+            return res.status(404).json({message:'Profile not found'});
+        }
+        return res.status(200).json(profile);
+    }catch(error){
+        console.error('Fetch error: ',error);
+        return res.status(500).json({message:'Server error ',error});
+    }
+};
+export {createProfile, getProfileByUserId};

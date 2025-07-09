@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './profile.css';
 
 const Profile = () => {
@@ -12,7 +12,31 @@ const Profile = () => {
 
   const [preview, setPreview] = useState(null);
   const [imageData, setImageData] = useState(null);
-
+  const userId = localStorage.getItem('userId');
+  useEffect(() => {
+    if(!userId) return;
+    fetch(`http://localhost:3001/api/profile/${userId}`)
+       .then((res) => {
+         if(!res.ok) throw new Error('No profile found');
+         return res.json();
+       })
+       .then((data) => {
+         setFormD({
+          companyName: data.companyName || '',
+          phoneNumber: data.phoneNumber|| '',
+          linkDN: data.linkDN|| '',
+          skills: data.skill || '',
+          description: data.description || '',
+         });
+         if(data.photo){
+          setPreview(data.photo);
+          setImageData(data.photo);
+         }
+       })
+       .catch((err) => {
+        console.log('No existing profile, the user can create a new one.');
+       });
+  },[userId]);
   const handleChange = (e) => {
     setFormD({ ...formD, [e.target.name]: e.target.value });
   };
