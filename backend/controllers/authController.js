@@ -1,5 +1,6 @@
 import bcrypt from 'bcrypt';
 import User from '../models/User.js';
+import Profiles from '../models/Profiles.js';
 const register = async (req,res) => {
     const {firstName, lastName, email, username, password, confirmPassword} = req.body;
     if(!firstName||!lastName||!email||!username||!password||!confirmPassword){
@@ -41,7 +42,8 @@ const login = async (req,res) => {
         if(!isMatch){
             return res.status(401).json({message: 'Invalid credentials'});
         }
-        return res.status(200).json({message: 'Login successful',userId: user.id, username:user.username});
+        const profile = await Profiles.findOne({where: {userId: user.id}});
+        return res.status(200).json({message: 'Login successful',userId: user.id, username:user.username, hasProfile: !!profile,});
     }catch(error){
         console.error('Login error: ',error);
         return res.status(500).json({message: 'Server error',error});

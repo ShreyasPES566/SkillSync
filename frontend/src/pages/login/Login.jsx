@@ -28,8 +28,14 @@ const Login = () => {
       if (response.ok) {
         localStorage.setItem('userId',result.userId);
         localStorage.setItem('username',result.username);
+        localStorage.setItem('hasProfile',result.hasProfile);
         alert(`Welcome back, ${result.username || 'user'}!`);
-        navigate('/profile'); 
+        if(result.hasProfile){
+          navigate('/landing');
+        }
+        else{
+          navigate('/profile');
+        }
       } else {
         alert(result.message || "Invalid email or password.");
       }

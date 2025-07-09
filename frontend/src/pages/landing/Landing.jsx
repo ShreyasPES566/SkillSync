@@ -1,12 +1,14 @@
-import React, {useState} from "react";
-import Profile from "../profile/Profile";
+import React from "react";
 import { Link } from "react-router-dom";
-import './landing.css'
+import './landing.css';
+
 const Landing = () => {
-    return(
-        <>
-          <p><Link to="/profile">EDIT PROFILE</Link></p>
-        </>
-    );
+  return (
+    <div className="landing-root">
+      <h1>Welcome to Skill Sync</h1>
+      <p><Link to="/profile" className="edit-link">EDIT PROFILE</Link></p>
+    </div>
+  );
 };
+
 export default Landing;

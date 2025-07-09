@@ -1,0 +1,15 @@
+.landing-root {
+  text-align: center;
+  padding: 2rem;
+}
+
+.edit-link {
+  text-decoration: none;
+  color: #00ccff;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.edit-link:hover {
+  text-decoration: underline;
+}
