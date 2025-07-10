@@ -28,26 +28,41 @@ const register = async (req,res) => {
         return res.status(500).json({message: 'Server error',error});
     }
 };
-const login = async (req,res) => {
-    const {email,password} = req.body;
-    if(!email||!password){
-        return res.status(400).json({message: 'Please provide email and password'});
+const login = async (req, res) => {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+        return res.status(400).json({ message: 'Please provide email and password' });
     }
-    try{
-        const user = await User.findOne({where: {email}});
-        if(!user){
-            return res.status(400).json({message: 'User not found'});
+
+    try {
+        const user = await User.findOne({ where: { email } });
+
+        if (!user) {
+            return res.status(400).json({ message: 'User not found' });
         }
-        const isMatch = await bcrypt.compare(password,user.password);
-        if(!isMatch){
-            return res.status(401).json({message: 'Invalid credentials'});
+
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+            return res.status(401).json({ message: 'Invalid credentials' });
         }
-        const profile = await Profiles.findOne({where: {userId: user.id}});
-        console.log({userId: user.id, username: user.username, hasProfile:!!profile});
-        return res.status(200).json({message: 'Login successful',userId: user.id, username:user.username, hasProfile: !!profile,});
-    }catch(error){
-        console.error('Login error: ',error);
-        return res.status(500).json({message: 'Server error',error});
+
+        const profile = await Profiles.findOne({ where: { userId: user.id } });
+        const hasProfile = !!profile;
+
+        const { password: _, ...userData } = user.toJSON();
+
+        return res.status(200).json({
+            message: 'Login successful',
+            user: {
+                ...userData, 
+                hasProfile
+            }
+        });
+
+    } catch (error) {
+        console.error('Login error: ', error);
+        return res.status(500).json({ message: 'Server error', error });
     }
 };
 export {register,login};

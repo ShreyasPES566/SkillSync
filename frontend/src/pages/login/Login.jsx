@@ -26,11 +26,13 @@ const Login = () => {
       const result = await response.json();
 
       if (response.ok) {
-        localStorage.setItem('userId',result.userId);
-        localStorage.setItem('username',result.username);
-        localStorage.setItem('hasProfile',String(result.hasProfile));
-        alert(`Welcome back, ${result.username || 'user'}!`);
-        if(result.hasProfile===true || result.hasProfile=="true"){
+        const user = result.user;
+        localStorage.setItem('user',JSON.stringify(user));
+        localStorage.setItem('userId',user.id);
+        localStorage.setItem('username',user.username);
+        localStorage.setItem('hasProfile',String(user.hasProfile));
+        alert(`Welcome back, ${user.firstName || 'user'}!`);
+        if(user.hasProfile){
           navigate('/landing');
         }
         else{
