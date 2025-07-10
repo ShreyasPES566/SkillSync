@@ -28,9 +28,9 @@ const Login = () => {
       if (response.ok) {
         localStorage.setItem('userId',result.userId);
         localStorage.setItem('username',result.username);
-        localStorage.setItem('hasProfile',result.hasProfile);
+        localStorage.setItem('hasProfile',String(result.hasProfile));
         alert(`Welcome back, ${result.username || 'user'}!`);
-        if(result.hasProfile){
+        if(result.hasProfile===true || result.hasProfile=="true"){
           navigate('/landing');
         }
         else{
