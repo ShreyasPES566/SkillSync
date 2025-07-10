@@ -161,7 +161,7 @@ p{
 }
 
 .forgot_password {
-  align-self: flex-end; /* Align "Forgot password?" to the right */
+  align-self: flex-end; 
   font-size: 0.8rem;
 }
 

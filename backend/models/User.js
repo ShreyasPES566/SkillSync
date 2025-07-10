@@ -1,5 +1,6 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../config/db.js";
+import Profiles from "./Profiles.js";
 const User = sequelize.define('User',{
     firstName:{
         type: DataTypes.STRING,
@@ -24,4 +25,6 @@ const User = sequelize.define('User',{
         allowNull: false
     },
 });
+User.hasOne(Profiles, {foreignKey: 'userId', onDelete: 'CASCADE'});
+Profiles.belongsTo(User,{foreignKey: 'userId'});
 export default User;

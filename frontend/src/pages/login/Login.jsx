@@ -26,8 +26,18 @@ const Login = () => {
       const result = await response.json();
 
       if (response.ok) {
-        alert(`Welcome back, ${result.username || 'user'}!`);
-        navigate('/dashboard'); 
+        const user = result.user;
+        localStorage.setItem('user',JSON.stringify(user));
+        localStorage.setItem('userId',user.id);
+        localStorage.setItem('username',user.username);
+        localStorage.setItem('hasProfile',String(user.hasProfile));
+        alert(`Welcome back, ${user.firstName || 'user'}!`);
+        if(user.hasProfile){
+          navigate('/landing');
+        }
+        else{
+          navigate('/profile');
+        }
       } else {
         alert(result.message || "Invalid email or password.");
       }
@@ -60,8 +70,8 @@ const Login = () => {
             Skill Sync
           </div>
           <div className="subnav poppins-regular">
-            <div>About</div>
-            <div>Help</div>
+            <div style={{color: 'white'}}>About</div>
+            <div style={{color: 'white'}}>Help</div>
           </div>
         </div>
       </div>
