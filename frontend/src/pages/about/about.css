@@ -1,0 +1,170 @@
+/* .about_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  position: relative;
+  background-image: url("../../assets/landing.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+  z-index: 5;
+}
+.navbar {
+  background-color: transparent;
+  gap: 2rem;
+}
+.about_wrapper .black_cover {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
+}
+.about_wrapper .about_content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  z-index: 7;
+  height: 100vh;
+}
+
+
+.main_header .heading_span {
+  color: #8c52ff;
+}
+.para_container {
+  width: 90%;
+  font-size: 3rem;
+  color: white;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+a {
+  text-decoration: none;
+  color: white;
+}
+a:hover {
+  color: #00ccff;
+  transition: color 0.3s;
+}
+.introduction {
+  font-size: 2.5rem;
+  color: white;
+  display: flex;
+  font-weight: 600;
+  margin-left: 20px;
+  background-color: transparent;
+} */
+.about_content .main_header {
+  font-size: 5rem;
+  width: 60%;
+  text-align: center;
+  margin-top: 100px;
+  color: white;
+}
+.navbar {
+  background-color: transparent;
+  gap: 2rem;
+  position: fixed; /* or static, depending on your design */
+  top: 0;
+  width: 100%;
+  z-index: 10; /* Ensure navbar is above other content */
+  height: 60px; /* Define a specific height for the navbar */
+}
+
+.about_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  position: relative;
+  background-image: url("../../assets/landing.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+  z-index: 5;
+  padding-top: 60px; /* Match the navbar height to push content down */
+  min-height: 100vh; /* Ensure the wrapper takes full viewport height */
+}
+
+.about_wrapper .black_cover {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
+}
+
+.about_wrapper .about_content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  justify-content: flex-start;
+  z-index: 7;
+  padding: 20px;
+  overflow-y: auto;
+  max-height: calc(100vh - 60px); /* Subtract navbar height from max height */
+}
+
+.about_content .main_header {
+  font-size: 5rem;
+  width: 60%;
+  text-align: center;
+  margin-top: 5px; /* Adjust margin to position below navbar */
+}
+
+.main_header .heading_span {
+  color: #8c52ff;
+}
+
+.para_container {
+  width: 90%;
+  font-size: 3rem;
+  color: white;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+a:hover {
+  color: #00ccff;
+  transition: color 0.3s;
+}
+
+.introduction {
+  font-size: 2.5rem;
+  width: 100%;
+  color: white;
+  display: flex;
+  font-weight: 600;
+  margin-left: 20px;
+  background-color: transparent;
+  text-align: left;
+  display: flex;
+  align-self: flex-start;
+  margin-top: 60px;
+  flex-direction: row;
+  margin-left: 0;
+}
+img {
+  width: 50%; /* Image takes half the space */
+  height: auto;
+  object-fit: cover;
+  margin-left: 2rem;
+}

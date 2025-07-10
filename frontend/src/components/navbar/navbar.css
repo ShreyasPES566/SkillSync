@@ -1,0 +1,9 @@
+.navbar {
+  background-color: transparent;
+  gap: 2rem;
+  position: fixed; /* or static, depending on your design */
+  top: 0;
+  width: 100%;
+  z-index: 10; /* Ensure navbar is above other content */
+  height: 60px; /* Define a specific height for the navbar */
+}
