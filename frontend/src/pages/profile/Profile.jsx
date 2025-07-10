@@ -12,31 +12,35 @@ const Profile = () => {
 
   const [preview, setPreview] = useState(null);
   const [imageData, setImageData] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
   const userId = localStorage.getItem('userId');
+
   useEffect(() => {
-    if(!userId) return;
+    if (!userId) return;
     fetch(`http://localhost:3001/api/profile/${userId}`)
-       .then((res) => {
-         if(!res.ok) throw new Error('No profile found');
-         return res.json();
-       })
-       .then((data) => {
-         setFormD({
+      .then((res) => {
+        if (!res.ok) throw new Error('No profile found');
+        return res.json();
+      })
+      .then((data) => {
+        setFormD({
           companyName: data.companyName || '',
-          phoneNumber: data.phoneNumber|| '',
-          linkDN: data.linkDN|| '',
+          phoneNumber: data.phoneNumber || '',
+          linkDN: data.linkDN || '',
           skills: data.skill || '',
           description: data.description || '',
-         });
-         if(data.photo){
+        });
+        if (data.photo) {
           setPreview(data.photo);
           setImageData(data.photo);
-         }
-       })
-       .catch((err) => {
-        console.log('No existing profile, the user can create a new one.');
-       });
-  },[userId]);
+        }
+        setIsEditing(true);
+      })
+      .catch(() => {
+        setIsEditing(false);
+      });
+  }, [userId]);
+
   const handleChange = (e) => {
     setFormD({ ...formD, [e.target.name]: e.target.value });
   };
@@ -45,10 +49,9 @@ const Profile = () => {
     const file = e.target.files[0];
     if (file) {
       setPreview(URL.createObjectURL(file));
-
       const reader = new FileReader();
       reader.onloadend = () => {
-        setImageData(reader.result); 
+        setImageData(reader.result);
       };
       reader.readAsDataURL(file);
     }
@@ -56,29 +59,35 @@ const Profile = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const userId = localStorage.getItem('userId');
 
     if (!userId) {
       alert('User not logged in!');
       return;
     }
+
     const phoneRegex = /^[6-9]\d{9}$/;
-    if(!phoneRegex.test(formD.phoneNumber)){
+    if (!phoneRegex.test(formD.phoneNumber)) {
       alert(`Please enter a valid mobile number.`);
       return;
     }
 
     try {
-      const response = await fetch('http://localhost:3001/api/profile/create', {
-        method: 'POST',
+      const endpoint = isEditing
+        ? `http://localhost:3001/api/profile/update/${userId}`
+        : 'http://localhost:3001/api/profile/create';
+
+      const method = isEditing ? 'PUT' : 'POST';
+
+      const response = await fetch(endpoint, {
+        method,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           companyName: formD.companyName,
           phoneNumber: formD.phoneNumber,
           linkDN: formD.linkDN,
-          skill: formD.skills, 
+          skill: formD.skills,
           description: formD.description,
-          photo: imageData || '', 
+          photo: imageData || '',
           userId: parseInt(userId),
         }),
       });
@@ -86,7 +95,8 @@ const Profile = () => {
       const result = await response.json();
 
       if (response.ok) {
-        alert('Profile created successfully!');
+        alert(isEditing ? 'Profile updated successfully!' : 'Profile created successfully!');
+        setIsEditing(true); 
       } else {
         alert(result.message || 'Something went wrong!');
       }
@@ -101,8 +111,8 @@ const Profile = () => {
       <div className="navbar">
         <div className="logo bruno-ace-regular">Skill Sync</div>
         <div className="subnav poppins-regular">
-          <div style={{color: 'white'}}>ABOUT US</div>
-          <div style={{color: 'white'}}>HELP</div>
+          <div style={{ color: 'white' }}>ABOUT US</div>
+          <div style={{ color: 'white' }}>HELP</div>
         </div>
       </div>
 
@@ -156,7 +166,7 @@ const Profile = () => {
             onChange={handleChange}
           />
 
-          <button type="submit">CREATE</button>
+          <button type="submit">{isEditing ? 'UPDATE' : 'CREATE'}</button>
         </form>
 
         <div className="profile-right">
