@@ -12,10 +12,12 @@ const Profile = () => {
 
   const [preview, setPreview] = useState(null);
   const [imageData, setImageData] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
   const userId = localStorage.getItem("userId");
+
   useEffect(() => {
     if (!userId) return;
-    fetch(`http://10.1.7.151:3001/api/profile/${userId}`)
+    fetch(`http://localhost:3001/api/profile/${userId}`)
       .then((res) => {
         if (!res.ok) throw new Error("No profile found");
         return res.json();
@@ -32,11 +34,13 @@ const Profile = () => {
           setPreview(data.photo);
           setImageData(data.photo);
         }
+        setIsEditing(true);
       })
-      .catch((err) => {
-        console.log("No existing profile, the user can create a new one.");
+      .catch(() => {
+        setIsEditing(false);
       });
   }, [userId]);
+
   const handleChange = (e) => {
     setFormD({ ...formD, [e.target.name]: e.target.value });
   };
@@ -45,7 +49,6 @@ const Profile = () => {
     const file = e.target.files[0];
     if (file) {
       setPreview(URL.createObjectURL(file));
-
       const reader = new FileReader();
       reader.onloadend = () => {
         setImageData(reader.result);
@@ -56,12 +59,12 @@ const Profile = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const userId = localStorage.getItem("userId");
 
     if (!userId) {
       alert("User not logged in!");
       return;
     }
+
     const phoneRegex = /^[6-9]\d{9}$/;
     if (!phoneRegex.test(formD.phoneNumber)) {
       alert(`Please enter a valid mobile number.`);
@@ -69,8 +72,14 @@ const Profile = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:3001/api/profile/create", {
-        method: "POST",
+      const endpoint = isEditing
+        ? `http://localhost:3001/api/profile/update/${userId}`
+        : "http://localhost:3001/api/profile/create";
+
+      const method = isEditing ? "PUT" : "POST";
+
+      const response = await fetch(endpoint, {
+        method,
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           companyName: formD.companyName,
@@ -86,7 +95,12 @@ const Profile = () => {
       const result = await response.json();
 
       if (response.ok) {
-        alert("Profile created successfully!");
+        alert(
+          isEditing
+            ? "Profile updated successfully!"
+            : "Profile created successfully!"
+        );
+        setIsEditing(true);
       } else {
         alert(result.message || "Something went wrong!");
       }
@@ -156,7 +170,7 @@ const Profile = () => {
             onChange={handleChange}
           />
 
-          <button type="submit">CREATE</button>
+          <button type="submit">{isEditing ? "UPDATE" : "CREATE"}</button>
         </form>
 
         <div className="profile-right">

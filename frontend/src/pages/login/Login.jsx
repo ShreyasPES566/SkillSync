@@ -82,9 +82,12 @@ const Login = () => {
             SKILLSYNC
           </div>
           <div className="subnav poppins-regular">
-            {links.map((link) => {
-              return <Link to={link.path}>{link.name}</Link>;
-            })}
+            <div style={{ color: "white" }}>
+              <Link to={"/about"}>About</Link>
+            </div>
+            <div style={{ color: "white" }}>
+              <Link to={"/help"}>Help</Link>
+            </div>
           </div>
         </div>
       </div>
