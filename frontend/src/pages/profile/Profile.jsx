@@ -1,42 +1,42 @@
-import React, { useState, useEffect } from 'react';
-import './profile.css';
+import React, { useState, useEffect } from "react";
+import "./profile.css";
 
 const Profile = () => {
   const [formD, setFormD] = useState({
-    companyName: '',
-    phoneNumber: '',
-    linkDN: '',
-    skills: '',
-    description: '',
+    companyName: "",
+    phoneNumber: "",
+    linkDN: "",
+    skills: "",
+    description: "",
   });
 
   const [preview, setPreview] = useState(null);
   const [imageData, setImageData] = useState(null);
-  const userId = localStorage.getItem('userId');
+  const userId = localStorage.getItem("userId");
   useEffect(() => {
-    if(!userId) return;
-    fetch(`http://localhost:3001/api/profile/${userId}`)
-       .then((res) => {
-         if(!res.ok) throw new Error('No profile found');
-         return res.json();
-       })
-       .then((data) => {
-         setFormD({
-          companyName: data.companyName || '',
-          phoneNumber: data.phoneNumber|| '',
-          linkDN: data.linkDN|| '',
-          skills: data.skill || '',
-          description: data.description || '',
-         });
-         if(data.photo){
+    if (!userId) return;
+    fetch(`http://10.1.7.151:3001/api/profile/${userId}`)
+      .then((res) => {
+        if (!res.ok) throw new Error("No profile found");
+        return res.json();
+      })
+      .then((data) => {
+        setFormD({
+          companyName: data.companyName || "",
+          phoneNumber: data.phoneNumber || "",
+          linkDN: data.linkDN || "",
+          skills: data.skill || "",
+          description: data.description || "",
+        });
+        if (data.photo) {
           setPreview(data.photo);
           setImageData(data.photo);
-         }
-       })
-       .catch((err) => {
-        console.log('No existing profile, the user can create a new one.');
-       });
-  },[userId]);
+        }
+      })
+      .catch((err) => {
+        console.log("No existing profile, the user can create a new one.");
+      });
+  }, [userId]);
   const handleChange = (e) => {
     setFormD({ ...formD, [e.target.name]: e.target.value });
   };
@@ -48,7 +48,7 @@ const Profile = () => {
 
       const reader = new FileReader();
       reader.onloadend = () => {
-        setImageData(reader.result); 
+        setImageData(reader.result);
       };
       reader.readAsDataURL(file);
     }
@@ -56,29 +56,29 @@ const Profile = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const userId = localStorage.getItem('userId');
+    const userId = localStorage.getItem("userId");
 
     if (!userId) {
-      alert('User not logged in!');
+      alert("User not logged in!");
       return;
     }
     const phoneRegex = /^[6-9]\d{9}$/;
-    if(!phoneRegex.test(formD.phoneNumber)){
+    if (!phoneRegex.test(formD.phoneNumber)) {
       alert(`Please enter a valid mobile number.`);
       return;
     }
 
     try {
-      const response = await fetch('http://localhost:3001/api/profile/create', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("http://localhost:3001/api/profile/create", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           companyName: formD.companyName,
           phoneNumber: formD.phoneNumber,
           linkDN: formD.linkDN,
-          skill: formD.skills, 
+          skill: formD.skills,
           description: formD.description,
-          photo: imageData || '', 
+          photo: imageData || "",
           userId: parseInt(userId),
         }),
       });
@@ -86,13 +86,13 @@ const Profile = () => {
       const result = await response.json();
 
       if (response.ok) {
-        alert('Profile created successfully!');
+        alert("Profile created successfully!");
       } else {
-        alert(result.message || 'Something went wrong!');
+        alert(result.message || "Something went wrong!");
       }
     } catch (error) {
-      console.error('Submit error:', error);
-      alert('Server error!');
+      console.error("Submit error:", error);
+      alert("Server error!");
     }
   };
 
@@ -101,8 +101,8 @@ const Profile = () => {
       <div className="navbar">
         <div className="logo bruno-ace-regular">Skill Sync</div>
         <div className="subnav poppins-regular">
-          <div style={{color: 'white'}}>ABOUT US</div>
-          <div style={{color: 'white'}}>HELP</div>
+          <div style={{ color: "white" }}>ABOUT US</div>
+          <div style={{ color: "white" }}>HELP</div>
         </div>
       </div>
 
@@ -163,12 +163,18 @@ const Profile = () => {
           <div className="image-container">
             <div className="circle">
               {preview ? (
-                <img src={preview} alt="Profile Preview" className="preview-image" />
+                <img
+                  src={preview}
+                  alt="Profile Preview"
+                  className="preview-image"
+                />
               ) : (
                 <span className="placeholder">Frame</span>
               )}
             </div>
-            <label htmlFor="upload" className="upload-btn">+</label>
+            <label htmlFor="upload" className="upload-btn">
+              +
+            </label>
             <input type="file" id="upload" onChange={handleImageUpload} />
             <p className="upload-label">UPDATE PROFILE PHOTO</p>
           </div>

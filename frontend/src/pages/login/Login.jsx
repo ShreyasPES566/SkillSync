@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
-import './login.css';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import "./login.css";
+import { Link, useNavigate } from "react-router-dom";
+import Navbar from "../../components/navbar/Navbar";
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const navigate = useNavigate(); 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -27,16 +28,15 @@ const Login = () => {
 
       if (response.ok) {
         const user = result.user;
-        localStorage.setItem('user',JSON.stringify(user));
-        localStorage.setItem('userId',user.id);
-        localStorage.setItem('username',user.username);
-        localStorage.setItem('hasProfile',String(user.hasProfile));
-        alert(`Welcome back, ${user.firstName || 'user'}!`);
-        if(user.hasProfile){
-          navigate('/landing');
-        }
-        else{
-          navigate('/profile');
+        localStorage.setItem("user", JSON.stringify(user));
+        localStorage.setItem("userId", user.id);
+        localStorage.setItem("username", user.username);
+        localStorage.setItem("hasProfile", String(user.hasProfile));
+        alert(`Welcome back, ${user.firstName || "user"}!`);
+        if (user.hasProfile) {
+          navigate("/landing");
+        } else {
+          navigate("/profile");
         }
       } else {
         alert(result.message || "Invalid email or password.");
@@ -46,6 +46,18 @@ const Login = () => {
       alert("Login failed. Please try again.");
     }
   };
+  const links = [
+    {
+      id: 1,
+      name: "ABOUT",
+      path: "/about",
+    },
+    {
+      id: 2,
+      name: "HELP",
+      path: "/help",
+    },
+  ];
 
   return (
     <div className="root">
@@ -56,26 +68,26 @@ const Login = () => {
             width: "100%",
             display: "flex",
             justifyContent: "space-between",
-            alignItems: "center"
+            alignItems: "center",
           }}
         >
           <div
             style={{
               color: "#00ccff",
               fontWeight: "bold",
-              fontSize: "2rem"
+              fontSize: "2rem",
             }}
             className="bruno-ace-regular"
           >
-            Skill Sync
+            SKILLSYNC
           </div>
           <div className="subnav poppins-regular">
-            <div style={{color: 'white'}}>About</div>
-            <div style={{color: 'white'}}>Help</div>
+            {links.map((link) => {
+              return <Link to={link.path}>{link.name}</Link>;
+            })}
           </div>
         </div>
       </div>
-
       <div className="half1"></div>
       <div className="half2">
         <div className="form_container poppins-regular">
@@ -83,7 +95,7 @@ const Login = () => {
             style={{
               display: "flex",
               alignItems: "center",
-              flexDirection: "column"
+              flexDirection: "column",
             }}
           >
             <h2 className="pink">HELLO!</h2>
