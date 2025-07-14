@@ -86,10 +86,11 @@
 
 .upload-btn {
   position: absolute;
-  bottom: 15px;
-  right: 20px;
+  bottom: 50%;
+  right: 50%;
   font-size: 2rem;
-  background-color: #00ccff;
+  background-color: transparent;
+  transform: translateX(50%);
   color: white;
   border-radius: 50%;
   padding: 0 0.6rem;
