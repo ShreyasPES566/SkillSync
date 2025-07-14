@@ -1,8 +1,7 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .bruno-ace-regular {
@@ -15,112 +14,107 @@
   font-weight: 400;
   font-style: normal;
 }
-.root{
-    height: 100dvh;
-    background-color: red;
-    position: relative;
-    display: flex;
+.root {
+  height: 100dvh;
+  background-color: red;
+  position: relative;
+  display: flex;
 }
-.navbar{
-    position: fixed;
-    top: 0;
-    width: 100%;
-    left: 0;
-   
-    background-color: black;
-    color: white;
-    display: flex;
-   
-  
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  left: 0;
 
+  background-color: black;
+  color: white;
+  display: flex;
 }
-.subnav{
-    display: flex;
-    align-items: center;
-    gap: 4rem;
+.subnav {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
 }
 
-.half1{
-    height: 100%;
-    width: 50%;
-    background-color: black;
-    background-image: url(../../assets/landing.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: right;
+.half1 {
+  height: 100%;
+  width: 50%;
+  background-color: black;
+  background-image: url(../../assets/landingwith.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: right;
+}
+.half2 {
+  height: 100%;
+  width: 50%;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.half2 .form_container {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 80%;
 
+  gap: 1rem;
 }
-.half2{
-    height: 100%;
-    width: 50%;
-    background-color: black;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
+.form_container .pink {
+  color: #ff00cc;
+  font-size: 3rem;
 }
-.half2 .form_container{
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-    width: 80%;
-   
-    gap: 1rem;
+.form_container .welcome {
+  font-size: 3rem;
+  color: white;
+  font-weight: bold;
 }
-.form_container .pink{
-    color: #FF00CC;
-    font-size: 3rem;
+.login_form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 70%;
 }
-.form_container .welcome{
-    font-size: 3rem;
-    color: white;
-    font-weight: bold;
-}
-.login_form{
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    width: 70%;
-}
-.input_container{
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    color: white;
+.input_container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: white;
 }
 input[type="text"],
-input[type="password"]{
-    padding: 0.5rem;
-    border: none;
-    border-radius: 0.5rem;
-    background-color: #f6f6f6;
-    color: black;
-    font-size: 1rem;
+input[type="password"] {
+  padding: 0.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: #f6f6f6;
+  color: black;
+  font-size: 1rem;
 }
 input[type="text"]:focus,
-input[type="password"]:focus{
-    outline: none;
-    border: 2px solid #FF00CC;
+input[type="password"]:focus {
+  outline: none;
+  border: 2px solid #ff00cc;
 }
 input[type="text"]::placeholder,
-input[type="password"]::placeholder{
-    color: #9f9d9d;
+input[type="password"]::placeholder {
+  color: #9f9d9d;
 }
-button[type="submit"]{
-    padding: 0.5rem;
-    border: none;
-    border-radius: 0.5rem;
-    background-color: #FF00CC;
-    color: white;
-    font-size: 1rem;
-    cursor: pointer;
-    margin-top: 1rem;
-}   
+button[type="submit"] {
+  padding: 0.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: #ff00cc;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 1rem;
+}
 .signup_container {
   display: flex;
   margin-top: 10px;
-  width:100%;
-  
+  width: 100%;
+
   justify-content: space-between;
   width: 100%;
   gap: 0.5rem;
@@ -136,13 +130,11 @@ button[type="submit"]{
 .signup_container a:hover {
   text-decoration: underline;
 }
-p{
-    color: white;
-    font-size: 0.2rem;
-    margin-top: 1rem;
+p {
+  color: white;
+  font-size: 0.2rem;
+  margin-top: 1rem;
 }
-
-
 
 .forgot_password a {
   color: #00ccff;
@@ -153,7 +145,6 @@ p{
   text-decoration: underline;
 }
 
-
 .input_container {
   display: flex;
   flex-direction: column;
@@ -161,7 +152,7 @@ p{
 }
 
 .forgot_password {
-  align-self: flex-end; 
+  align-self: flex-end;
   font-size: 0.8rem;
 }
 

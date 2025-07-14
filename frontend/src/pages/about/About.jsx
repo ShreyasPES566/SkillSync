@@ -79,11 +79,32 @@ const About = () => {
                   backgroundImage: "../../assets/plant.svg",
                 }}
               >
-                OUR VISION
+                OUR MISSION
+                <div className="littletext">
+                  HELP EMPLOYEES CONNECT WITH OTHER EMPLOYEES EQUIPED WITH THE
+                  REQUIRED SKILLSET
+                </div>
               </div>
-              <div class="two"></div>
-              <div class="three"></div>
-              <div class="four"></div>
+              <div class="two">
+                TARGET AUDIENCE
+                <div className="littletext">
+                  We serve corporate teams, educational institutions, and
+                  faculty members who struggle to identify internal experts
+                </div>
+              </div>
+              <div class="three">
+                OUR VISION
+                <div className="littletext">
+                  To make our application a go-to tool for corporate employees
+                </div>
+              </div>
+              <div class="four">
+                TEAM
+                <div className="littletext">
+                  Founded by Isha and Shreyas, this project stems from a shared
+                  passion for solving real-world problems through technology.
+                </div>
+              </div>
             </div>
             {/* <a
               href="https://www.linkedin.com/in/shreyas-v-8a8577297"

@@ -172,6 +172,12 @@ a:hover {
   flex-direction: row;
   margin-left: 0;
 }
+.littletext {
+  color: black;
+  font-size: 1.2rem;
+  text-align: left;
+  padding: 0.5rem;
+}
 .one {
   height: 250px;
   background-color: black;
@@ -196,6 +202,13 @@ img {
   align-items: center;
   height: 100vh;
   background: #000;
+}
+.intro-text {
+  display: flex;
+  gap: 5rem;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
 }
 
 /* .holographic-card {
@@ -245,3 +258,39 @@ img {
   opacity: 1;
   transform: rotate(-45deg) translateY(100%);
 } */
+.two {
+  height: 250px;
+  background-color: black;
+  width: 250px;
+  text-align: center;
+  border-style: solid;
+  border-color: #8c52ff;
+  background-image: "../../assets/plant.svg";
+}
+.two:hover {
+  background-color: #8c52ff;
+}
+.three {
+  height: 250px;
+  background-color: black;
+  width: 250px;
+  text-align: center;
+  border-style: solid;
+  border-color: #8c52ff;
+  background-image: "../../assets/plant.svg";
+}
+.three:hover {
+  background-color: #8c52ff;
+}
+.four {
+  height: 250px;
+  background-color: black;
+  width: 250px;
+  text-align: center;
+  border-style: solid;
+  border-color: #8c52ff;
+  background-image: "../../assets/plant.svg";
+}
+.four:hover {
+  background-color: #8c52ff;
+}

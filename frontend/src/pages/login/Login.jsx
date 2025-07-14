@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./login.css";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../../components/navbar/Navbar";
+import loginImg from "../../assets/landingwith.jpg";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -91,7 +92,12 @@ const Login = () => {
           </div>
         </div>
       </div>
-      <div className="half1"></div>
+      <div
+        className="half1"
+        style={{
+          backgroundImage: "../../assets/landing.with",
+        }}
+      ></div>
       <div className="half2">
         <div className="form_container poppins-regular">
           <div
