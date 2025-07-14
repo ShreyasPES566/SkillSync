@@ -4,6 +4,8 @@ import Login from './pages/login/Login'
 import Register from './pages/register/Register'
 import Profile from './pages/profile/Profile'
 import Landing from './pages/landing/Landing'
+import About from './pages/about/About'
+import Help1 from './pages/help/Help1'
 function App() {
   
 
@@ -15,6 +17,8 @@ function App() {
       <Route path='/register' element={<Register />} />
       <Route path='/profile' element={<Profile />} />
       <Route path='/landing' element={<Landing />}/>
+      <Route path='/about' element={<About />}/>
+      <Route path='/help' element={<Help1 />}/>
      </Routes>
      </BrowserRouter>
     </>
