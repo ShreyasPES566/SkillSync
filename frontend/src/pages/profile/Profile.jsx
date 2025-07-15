@@ -12,7 +12,8 @@ const Profile = () => {
 
   const [preview, setPreview] = useState(null);
   const [imageData, setImageData] = useState(null);
-  const [isEditing, setIsEditing] = useState(false);
+  const [isExistingProfile, setIsExistingProfile] = useState(false);
+
   const userId = localStorage.getItem('userId');
 
   useEffect(() => {
@@ -34,10 +35,10 @@ const Profile = () => {
           setPreview(data.photo);
           setImageData(data.photo);
         }
-        setIsEditing(true);
+        setIsExistingProfile(true);
       })
       .catch(() => {
-        setIsEditing(false);
+        setIsExistingProfile(false);
       });
   }, [userId]);
 
@@ -67,36 +68,38 @@ const Profile = () => {
 
     const phoneRegex = /^[6-9]\d{9}$/;
     if (!phoneRegex.test(formD.phoneNumber)) {
-      alert(`Please enter a valid mobile number.`);
+      alert('Please enter a valid mobile number.');
       return;
     }
 
+    const payload = {
+      companyName: formD.companyName,
+      phoneNumber: formD.phoneNumber,
+      linkDN: formD.linkDN,
+      skill: formD.skills,
+      description: formD.description,
+      photo: imageData || '',
+      userId: parseInt(userId),
+    };
+
+    const endpoint = isExistingProfile
+      ? `http://localhost:3001/api/profile/update/${userId}`
+      : `http://localhost:3001/api/profile/create`;
+
+    const method = isExistingProfile ? 'PUT' : 'POST';
+
     try {
-      const endpoint = isEditing
-        ? `http://localhost:3001/api/profile/update/${userId}`
-        : 'http://localhost:3001/api/profile/create';
-
-      const method = isEditing ? 'PUT' : 'POST';
-
       const response = await fetch(endpoint, {
         method,
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          companyName: formD.companyName,
-          phoneNumber: formD.phoneNumber,
-          linkDN: formD.linkDN,
-          skill: formD.skills,
-          description: formD.description,
-          photo: imageData || '',
-          userId: parseInt(userId),
-        }),
+        body: JSON.stringify(payload),
       });
 
       const result = await response.json();
 
       if (response.ok) {
-        alert(isEditing ? 'Profile updated successfully!' : 'Profile created successfully!');
-        setIsEditing(true); 
+        alert(isExistingProfile ? 'Profile updated successfully!' : 'Profile created successfully!');
+        setIsExistingProfile(true);
       } else {
         alert(result.message || 'Something went wrong!');
       }
@@ -166,7 +169,7 @@ const Profile = () => {
             onChange={handleChange}
           />
 
-          <button type="submit">{isEditing ? 'UPDATE' : 'CREATE'}</button>
+          <button type="submit">{isExistingProfile ? 'UPDATE' : 'CREATE'}</button>
         </form>
 
         <div className="profile-right">
