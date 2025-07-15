@@ -16,7 +16,7 @@ app.use('/api/profile', profileRoutes);
 
 sequelize.sync().then(() => {
     console.log('Database synced successfully');
-    app.listen(PORT, '0.0.0.0', () => {
+    app.listen(PORT, () => {
         console.log(`Server running at http://0.0.0.0:${PORT}`);
     });
 }).catch((error) => {
