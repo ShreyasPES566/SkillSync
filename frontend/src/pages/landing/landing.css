@@ -2,7 +2,7 @@
   text-align: center;
   margin-top: 5rem;
   font-family: 'Poppins', sans-serif;
-  background-color: #f0f4f8;
+  background-color: grey;
   padding: 3rem;
   border-radius: 10px;
   max-width: 600px;
@@ -29,4 +29,7 @@
 
 .edit-link button:hover {
   background-color: #009ec4;
+}
+body{
+  background-color:black;
 }
