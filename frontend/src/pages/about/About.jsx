@@ -81,15 +81,15 @@ const About = () => {
               >
                 OUR MISSION
                 <div className="littletext">
-                  HELP EMPLOYEES CONNECT WITH OTHER EMPLOYEES EQUIPED WITH THE
-                  REQUIRED SKILLSET
+                  help employees connect with other employees equipped with the
+                  required skillset
                 </div>
               </div>
               <div class="two">
                 TARGET AUDIENCE
                 <div className="littletext">
                   We serve corporate teams, educational institutions, and
-                  faculty members who struggle to identify internal experts
+                  faculty members
                 </div>
               </div>
               <div class="three">
@@ -118,6 +118,40 @@ const About = () => {
             >
               <img src={isha}></img>
             </a> */}
+          </div>
+          <div
+            className="contactus"
+            style={{
+              height: "100dvh",
+            }}
+          >
+            <ul>
+              <li>
+                <a
+                  href="https://www.linkedin.com/in/praishaa-499137357
+
+"
+                >
+                  <i className="fab fa-facebook-f icon"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <i className="fab fa-twitter icon"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <i className="fab fa-linkedin-in icon"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <i className="fab fa-google-plus-g icon"></i>
+                </a>
+              </li>
+            </ul>
+            contact
           </div>
         </div>
       </div>

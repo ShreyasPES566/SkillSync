@@ -73,7 +73,7 @@ const Profile = () => {
 
     try {
       const endpoint = isEditing
-        ? `http://localhost:3001/api/profile/update/${userId}`
+        ? `http://localhost:3001/api/profile/update`
         : "http://localhost:3001/api/profile/create";
 
       const method = isEditing ? "PUT" : "POST";
